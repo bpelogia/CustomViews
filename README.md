@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/bpelogia/CustomViews.svg)](https://jitpack.io/#bpelogia/CustomViews)
 # CustomViews
 
 * CustomMaskEditText com validação de:
