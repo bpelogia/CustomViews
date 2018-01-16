@@ -1,6 +1,6 @@
 # CustomViews
 
-* CustomMaskedEditText com validação de:
+* CustomMaskEditText com validação de:
   - cpf -> ###.###.###-##;
   - placa de veículo -> AAA-####; 
   - valor monetário -> R$#.###.###,##;
