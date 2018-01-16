@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">?attr/colorPrimary</color>
+    <color name="colorPrimaryDark">?attr/colorPrimaryDark</color>
+    <color name="colorAccent">?attr/colorAccent</color>
+
+    <!-- number picker color -->
+    <color name="background_retangle">@color/white</color>
+
+    <!-- custom colors -->
+    <color name="bg_screen">#F1EDEB</color>
+    <color name="bg_grey_disabled">#E0E0E0</color>
+    <color name="bg_grey_enabled">#616161</color>
+    <color name="primary_text_color">@color/brown_light</color>
+    <color name="secondary_text_color">@color/gray_text</color>
+    <color name="hint_text_color">#9E9E9E</color>
+    <color name="gray_text">#8B847E</color>
+    <color name="gray_border">#BDBDBD</color>
+    <color name="gray_icon">#757575</color>
+    <color name="gray_search">#BFBFBF</color>
+    <color name="gray_item">#FDFDFD</color>
+    <color name="gray_kanban">#E2DCD8</color>
+    <color name="blue_buttons">#1F6CB7</color>
+    <color name="orange_buttons">#EC7404</color>
+    <color name="blue">#007AB7</color>
+    <color name="brown_light">#5B5149</color>
+    <color name="brown">#48403A</color>
+    <color name="gray">#E3E3E3</color>
+    <color name="green">#388E3C</color>
+    <color name="red">#D32F2F</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_40">#40FFFFFF</color>
+    <color name="white_30">#30FFFFFF</color>
+
+</resources>

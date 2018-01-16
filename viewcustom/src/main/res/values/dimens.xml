@@ -1,0 +1,32 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--Commons Font-->
+    <dimen name="font_minor_size">10sp</dimen>
+    <dimen name="font_small_size">12sp</dimen>
+    <dimen name="font_normal_size">14sp</dimen>
+    <dimen name="font_big_size">16sp</dimen>
+    <dimen name="font_extra_big_size">18sp</dimen>
+    <dimen name="font_large_medium">24sp</dimen>
+    <dimen name="font_large_size">32sp</dimen>
+
+    <!--Commons Layout Spacing-->
+    <dimen name="common_minor_spacing">8dp</dimen>
+    <dimen name="common_small_spacing">12dp</dimen>
+    <dimen name="common_normal_spacing">14dp</dimen>
+    <dimen name="common_big_spacing">16dp</dimen>
+    <dimen name="common_extra_big_spacing">18dp</dimen>
+    <dimen name="common_large_medium_spacing">24dp</dimen>
+    <dimen name="common_large_spacing">32dp</dimen>
+
+    <item name="common_text_weight" type="integer">0.5</item>
+
+    <!--NumberPickers-->
+    <dimen name="numberpicker_year_width">247dp</dimen>
+    <dimen name="numberpicker_year_height">34dp</dimen>
+    <dimen name="numberpicker_year_diver_distance">82dp</dimen>
+
+
+</resources>

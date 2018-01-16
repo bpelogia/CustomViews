@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomMaskEditText">
+        <attr name="mask" format="string" />
+        <attr name="required" format="boolean"/>
+        <attr name="placeholder" format="string" />
+    </declare-styleable>
+
+    <!-- Don't touch this -->
+    <attr name="numberPickerStyle" format="reference" />
+
+    <declare-styleable name="CustomNumberPicker">
+        <attr name="np_width" format="dimension" />
+        <attr name="np_height" format="dimension" />
+        <attr name="np_dividerColor" format="color" />
+        <attr name="np_dividerDistance" format="dimension" />
+        <attr name="np_dividerThickness" format="dimension" />
+        <attr name="np_formatter" format="string" />
+        <attr name="np_max" format="integer" />
+        <attr name="np_min" format="integer" />
+        <attr name="np_orientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="np_selectedTextColor" format="color" />
+        <attr name="np_textColor" format="color" />
+        <attr name="np_textSize" format="dimension" />
+        <attr name="np_typeface" format="string" />
+        <attr name="np_value" format="integer" />
+        <attr name="np_wheelItemCount" format="integer" />
+        <attr name="np_wrapSelectorWheel" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomNavigationView">
+        <!-- If text will be enabled for the tabs, defaulted to true -->
+        <attr name="bn_with_text" format="boolean" />
+        <!-- If there will be a shadow on the view, default is true -->
+        <attr name="bn_shadow" format="boolean" />
+        <!-- If the view should be set up for a tablet, default is false -->
+        <attr name="bn_tablet" format="boolean" />
+        <!-- Disable or enable the background color, default is true -->
+        <attr name="bn_colored_background" format="boolean" />
+        <!-- If a supplied ViewPager will have a slide animation, default is true -->
+        <attr name="bn_viewpager_slide" format="boolean" />
+        <!-- Text size for the active tab, default size is 14sp -->
+        <attr name="bn_active_text_size" format="dimension" />
+        <!-- Text size for an inactive tab, default size is 12sp -->
+        <attr name="bn_inactive_text_size" format="dimension" />
+        <!-- The color of an activated tab. Will only be considered if bnv_colored_background is false, no default is set -->
+        <attr name="bn_active_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomNavigationItemView">
+        <attr name="bn_title" format="string" />
+        <attr name="bn_color" format="color" />
+        <attr name="bn_image_resource_font" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="BreadcrumbsView">
+        <attr name="orientation" format="enum">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+        </attr>
+        <attr name="numberOfSteps" format="integer" />
+        <attr name="stopInStep" format="integer" />
+        <attr name="visitedStepBorderDotColor" format="color" />
+        <attr name="visitedStepFillDotColor" format="color" />
+        <attr name="visitedStepSeparatorColor" format="color" />
+        <attr name="currentStepBorderDotColor" format="color" />
+        <attr name="currentStepFillDotColor" format="color" />
+        <attr name="currentStepSeparatorColor" format="color" />
+        <attr name="nextStepBorderDotColor" format="color" />
+        <attr name="nextStepFillDotColor" format="color" />
+        <attr name="nextStepSeparatorColor" format="color" />
+        <attr name="radiusDot" format="dimension" />
+        <attr name="sizeDotBorder" format="dimension" />
+        <attr name="heightSeparator" format="dimension" />
+        <attr name="widthSeparator" format="dimension" />
+        <attr name="leftMarginText" format="dimension" />
+        <attr name="visitedIcon" format="string" />
+        <attr name="visitedIconColor" format="color" />
+        <attr name="sizeVisitedIcon" format="dimension" />
+        <attr name="typefaceIcon" format="string" />
+        <attr name="typefaceTitle" format="string" />
+        <attr name="sizeTitle" format="dimension" />
+        <attr name="visitedTitleColor" format="color" />
+        <attr name="nextTitleColor" format="color"/>
+    </declare-styleable>
+
+</resources>

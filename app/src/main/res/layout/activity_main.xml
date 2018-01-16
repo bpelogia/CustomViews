@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="true"
+    tools:context="br.com.bpelogia.appteste.flow.dashboard.MainActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:isScrollContainer="true"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/common_big_spacing"
+                android:layout_marginStart="@dimen/common_big_spacing"
+                android:layout_marginTop="8dp"
+                android:text="@string/title_home"
+                android:textSize="@dimen/font_large_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <br.com.bpelogia.viewcustom.ui.CustomNumberPicker
+                android:id="@+id/picker"
+                android:layout_width="@dimen/numberpicker_year_width"
+                android:layout_height="@dimen/numberpicker_year_height"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:padding="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/message"
+                app:layout_goneMarginTop="@dimen/common_big_spacing"
+                app:np_dividerColor="@color/gray_border"
+                app:np_dividerDistance="@dimen/numberpicker_year_diver_distance"
+                app:np_max="2019"
+                app:np_min="2009"
+                app:np_orientation="horizontal"
+                app:np_textColor="@color/gray_text"
+                app:np_textSize="@dimen/font_normal_size"
+                app:np_value="2018"
+                app:np_wrapSelectorWheel="false" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/ti_cpf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/common_big_spacing"
+                android:layout_marginStart="@dimen/common_big_spacing"
+                android:layout_marginTop="8dp"
+                android:layout_weight="@integer/common_text_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/picker">
+
+                <br.com.bpelogia.viewcustom.ui.CustomMaskEditText
+                    android:id="@+id/et_cpf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="cpf"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    app:mask="@string/cpf_mask_format"
+                    app:required="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/ti_plate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/common_big_spacing"
+                android:layout_marginStart="@dimen/common_big_spacing"
+                android:layout_marginTop="8dp"
+                android:layout_weight="@integer/common_text_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ti_cpf">
+
+                <br.com.bpelogia.viewcustom.ui.CustomMaskEditText
+                    android:id="@+id/et_plate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="placa"
+                    android:inputType="textCapCharacters"
+                    android:maxLines="1"
+                    app:mask="@string/plate_mask_format"
+                    app:required="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/ti_monetary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/common_big_spacing"
+                android:layout_marginStart="@dimen/common_big_spacing"
+                android:layout_weight="@integer/common_text_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ti_plate">
+
+                <br.com.bpelogia.viewcustom.ui.CustomMaskEditText
+                    android:id="@+id/et_monetary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="valor"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    app:mask="@string/monetary_mask_format"
+                    app:required="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/ti_cep"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/common_big_spacing"
+                android:layout_marginStart="@dimen/common_big_spacing"
+                android:layout_marginTop="8dp"
+                android:layout_weight="@integer/common_text_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ti_monetary">
+
+                <br.com.bpelogia.viewcustom.ui.CustomMaskEditText
+                    android:id="@+id/et_cep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="cep"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    app:mask="@string/cep_mask_format"
+                    app:required="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/ti_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/common_big_spacing"
+                android:layout_marginStart="@dimen/common_big_spacing"
+                android:layout_marginTop="8dp"
+                android:layout_weight="@integer/common_text_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ti_cep">
+
+                <br.com.bpelogia.viewcustom.ui.CustomMaskEditText
+                    android:id="@+id/et_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="data"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    app:mask="@string/date_mask_format"
+                    app:required="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/ti_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/common_big_spacing"
+                android:layout_marginStart="@dimen/common_big_spacing"
+                android:layout_marginTop="8dp"
+                android:layout_weight="@integer/common_text_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ti_date">
+
+                <br.com.bpelogia.viewcustom.ui.CustomMaskEditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="phone"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    app:mask="@string/phone_mask_format"
+                    app:required="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/ti_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/common_big_spacing"
+                android:layout_marginStart="@dimen/common_big_spacing"
+                android:layout_marginTop="8dp"
+                android:layout_weight="@integer/common_text_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ti_phone">
+
+                <br.com.bpelogia.viewcustom.ui.CustomMaskEditText
+                    android:id="@+id/et_normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="normal"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    app:required="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/bt_validate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/common_big_spacing"
+                android:text="validar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ti_normal" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_validate" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<string name="api_url">http://10.0.10.132:8090</string>-->
+    <string name="app_name">App Teste Dev</string>
+</resources>

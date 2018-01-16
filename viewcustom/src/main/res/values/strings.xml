@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">View Custom</string>
+
+    <!-- Mask -->
+    <string name="date_mask_format">##/##/####</string>
+    <string name="monetary_mask_format">#.###.###.###,##</string>
+    <string name="cpf_mask_format">###.###.###-##</string>
+    <string name="cellphone_mask_format">(##) #####-####</string>
+    <string name="phone_mask_format">(##) ####-####</string>
+    <string name="cep_mask_format">#####-###</string>
+    <string name="plate_mask_format">AAA-####</string>
+
+    <!-- Validações -->
+    <string name="email_invalid_field">e-mail inválido</string>
+    <string name="cpf_invalid_field">CPF inválido</string>
+    <string name="cellphone_invalid_field">celular inválido</string>
+    <string name="phone_invalid_field">telefone inválido</string>
+    <string name="plate_invalid_field">placa inválida</string>
+    <string name="cep_invalid_field">cep inválido</string>
+    <string name="date_invalid_field">data inválida</string>
+    <string name="marital_partner_invalid">CPF já informado acima</string>
+    <string name="marital_partner_required_cpf">CPF não informado</string>
+    <string name="password_invalid_size">senha deve conter no mínimo 8 dígitos</string>
+    <string name="required_field">campo obrigatório</string>
+</resources>

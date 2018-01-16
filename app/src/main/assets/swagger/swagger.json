@@ -1,0 +1,3502 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API for credit analysis, credit approval and client qualification",
+    "version": "V1.0.0",
+    "title": "ZFlow Lead manager API",
+    "termsOfService": "https://leadmanager.zflow.com.br/terms.html",
+    "contact": {
+      "name": "zFlow Team",
+      "url": "https://www.zflow.com.br",
+      "email": "dev@zflow.com.br"
+    }
+  },
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Private",
+      "description": "Tag used to denote operations as private"
+    },
+    {
+      "name": "gmail"
+    },
+    {
+      "name": "lead"
+    },
+    {
+      "name": "userLead"
+    },
+    {
+      "name": "outlook"
+    },
+    {
+      "name": "financing"
+    },
+    {
+      "name": "clientnegotiation"
+    },
+    {
+      "name": "leadmanagement"
+    },
+    {
+      "name": "library"
+    },
+    {
+      "name": "onboard"
+    },
+    {
+      "name": "seller"
+    },
+    {
+      "name": "user"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/gmail/reademails": {
+      "get": {
+        "tags": [
+          "gmail"
+        ],
+        "summary": "reademails",
+        "description": "",
+        "operationId": "readEmails",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/gmail/getforward": {
+      "get": {
+        "tags": [
+          "gmail"
+        ],
+        "summary": "getforward",
+        "description": "",
+        "operationId": "getForward",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/gmail/urlauthorize/{userId}": {
+      "get": {
+        "tags": [
+          "gmail"
+        ],
+        "summary": "get url to authorize",
+        "description": "",
+        "operationId": "getUrlAuthorize",
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/gmail/Callback": {
+      "get": {
+        "tags": [
+          "gmail"
+        ],
+        "summary": "Callback to get authorization",
+        "description": "",
+        "operationId": "authorizeUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/gmail/getmessage": {
+      "get": {
+        "tags": [
+          "gmail"
+        ],
+        "summary": "get one message",
+        "description": "",
+        "operationId": "getMessage",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idMessage",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "isForward",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/lead/generatelead": {
+      "get": {
+        "tags": [
+          "lead"
+        ],
+        "summary": "generatelead",
+        "description": "",
+        "operationId": "generateLeads",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LeadInfo"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lead/generatelead/{idEmail}": {
+      "get": {
+        "tags": [
+          "lead"
+        ],
+        "summary": "generatelead",
+        "description": "",
+        "operationId": "generateSpecifLeads",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "idEmail",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LeadInfo"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/userLead/addUserLead": {
+      "post": {
+        "tags": [
+          "userLead"
+        ],
+        "summary": "addUserLead",
+        "description": "",
+        "operationId": "addUserLead",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UserLead"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/outlook/reademails": {
+      "get": {
+        "tags": [
+          "outlook"
+        ],
+        "summary": "readEmails",
+        "description": "",
+        "operationId": "readEmails",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/outlook/authorize": {
+      "post": {
+        "tags": [
+          "outlook"
+        ],
+        "summary": "authorize",
+        "description": "",
+        "operationId": "authorize",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id_token",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/outlook/index": {
+      "get": {
+        "tags": [
+          "outlook"
+        ],
+        "summary": "index",
+        "description": "",
+        "operationId": "index",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/outlook/getmessage": {
+      "get": {
+        "tags": [
+          "outlook"
+        ],
+        "summary": "get one message",
+        "description": "",
+        "operationId": "getMessage",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "idMessage",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "/financing/simulate/{cpf}": {
+      "post": {
+        "tags": [
+          "financing"
+        ],
+        "summary": "Requests password recovery",
+        "description": "",
+        "operationId": "simulate",
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/FinanceOperationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FinanceOperationDetails"
+            }
+          }
+        }
+      }
+    },
+    "/financing/getsimulation/{cpf}": {
+      "get": {
+        "tags": [
+          "financing"
+        ],
+        "summary": "Requests password recovery",
+        "description": "",
+        "operationId": "getByCpf",
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FinanceOperationDetails"
+            }
+          }
+        }
+      }
+    },
+    "/clientnegotiation/{clientEmail}/getinfo": {
+      "get": {
+        "tags": [
+          "clientnegotiation"
+        ],
+        "operationId": "getClientInfo",
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "clientEmail",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Client"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/leadmanagement/{sellerdocument}/sellernegotiations": {
+      "get": {
+        "tags": [
+          "leadmanagement"
+        ],
+        "operationId": "getNegotiationsBySeller",
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sellerdocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LeadIndex"
+              }
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/leadmanagement/{sellerdocument}/sellernegotiationsbyclient/{clientid}": {
+      "get": {
+        "tags": [
+          "leadmanagement"
+        ],
+        "operationId": "getNegotiationsBySellerByClient",
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sellerdocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clientid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/LeadIndex"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/leadmanagement/{sellerdocument}/changeowner/{vehicleid}/{sellerpersonid}": {
+      "put": {
+        "tags": [
+          "leadmanagement"
+        ],
+        "operationId": "setNegotiationOwner",
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sellerdocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "vehicleid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sellerpersonid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/leadmanagement/{sellerdocument}/markduplicate/{vehicleid}": {
+      "put": {
+        "tags": [
+          "leadmanagement"
+        ],
+        "operationId": "markAsDuplicate",
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sellerdocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "vehicleid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/leadmanagement/{sellerdocument}/sendmessage/{vehicleid}/{clientid}": {
+      "post": {
+        "tags": [
+          "leadmanagement"
+        ],
+        "operationId": "sendMessage",
+        "consumes": [
+          "multipart/form-data",
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sellerdocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "vehicleid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "message",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "clientid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/leadmanagement/{sellerdocument}/sendFiles/{vehicleid}/{clientid}": {
+      "post": {
+        "tags": [
+          "leadmanagement"
+        ],
+        "operationId": "sendFiles",
+        "consumes": [
+          "multipart/form-data",
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sellerdocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "vehicleid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clientid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/leadmanagement/{sellerdocument}/addobs/{clientid}": {
+      "post": {
+        "tags": [
+          "leadmanagement"
+        ],
+        "operationId": "addNewObservation",
+        "consumes": [
+          "multipart/form-data",
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sellerdocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clientid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "content",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/leadmanagement/{sellerdocument}/seennegotiation/{clientId}": {
+      "put": {
+        "tags": [
+          "leadmanagement"
+        ],
+        "operationId": "setNegotiationSeen",
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "sellerdocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/leadmanagement/{sellerdocument}/uploadfile/{vehicleId}": {
+      "post": {
+        "tags": [
+          "leadmanagement"
+        ],
+        "operationId": "uploadFile",
+        "consumes": [
+          "multipart/form-data",
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fileName",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fileContent",
+            "in": "formData",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "fileType",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "PDF",
+              "JPG",
+              "JPEG",
+              "PNG"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/library/{sellerDocument}/form": {
+      "post": {
+        "tags": [
+          "library"
+        ],
+        "summary": "Add new form",
+        "description": "",
+        "operationId": "addNewFormToLibrary",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sellerDocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "fileName",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/library/{sellerDocument}/message": {
+      "post": {
+        "tags": [
+          "library"
+        ],
+        "summary": "Add new meassage to library",
+        "description": "",
+        "operationId": "addNewMessageToLibrary",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sellerDocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/LibraryMessage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/library/{idSeller}/addclickmessagelibrary/{idLibraryMessage}": {
+      "post": {
+        "tags": [
+          "library"
+        ],
+        "summary": "Add click to message",
+        "description": "",
+        "operationId": "addClickMessageLibrary",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "idSeller",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idLibraryMessage",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/library/{idSeller}/editmessagelibrary": {
+      "post": {
+        "tags": [
+          "library"
+        ],
+        "summary": "Edit meassage to library",
+        "description": "",
+        "operationId": "editMessageLibrary",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "idSeller",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/LibraryMessage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/library/{idSeller}/deletemessagelibrary/{idLibraryMessage}": {
+      "delete": {
+        "tags": [
+          "library"
+        ],
+        "summary": "Delete meassage to library",
+        "description": "",
+        "operationId": "deleteMessageLibrary",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "idSeller",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idLibraryMessage",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/library/{sellerDocument}/image": {
+      "post": {
+        "tags": [
+          "library"
+        ],
+        "summary": "Add new image",
+        "description": "",
+        "operationId": "addNewImageToLibrary",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sellerDocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "fileName",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/onboard/invite/{id}": {
+      "get": {
+        "tags": [
+          "onboard"
+        ],
+        "summary": "Get invite by id",
+        "description": "",
+        "operationId": "getInvite",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/InviteHelper"
+            }
+          }
+        }
+      }
+    },
+    "/onboard/invite/{id}/sms": {
+      "get": {
+        "tags": [
+          "onboard"
+        ],
+        "summary": "Generate a SMS confirmation code",
+        "description": "",
+        "operationId": "generateSMS",
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/onboard/invite/{id}/activate": {
+      "post": {
+        "tags": [
+          "onboard"
+        ],
+        "summary": "Activate SMS code",
+        "description": "",
+        "operationId": "activate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ActivateInviteHelper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ActivateInviteResponse"
+            }
+          }
+        }
+      }
+    },
+    "/onboard/invite": {
+      "post": {
+        "tags": [
+          "onboard"
+        ],
+        "summary": "Send invites",
+        "description": "",
+        "operationId": "sendInvites",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Invite"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/seller": {
+      "put": {
+        "tags": [
+          "seller"
+        ],
+        "summary": "Update a seller",
+        "description": "",
+        "operationId": "updateSeller",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/seller/{sellerDocument}/operator/{cpf}": {
+      "put": {
+        "tags": [
+          "seller"
+        ],
+        "summary": "Set seller operatorDocument",
+        "description": "",
+        "operationId": "setOperatorDocument",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sellerDocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cpf",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/seller/{sellerDocument}": {
+      "get": {
+        "tags": [
+          "seller"
+        ],
+        "summary": "Get a seller by cnpj",
+        "description": "",
+        "operationId": "getSeller",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sellerDocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/seller/{sellerDocument}/users": {
+      "get": {
+        "tags": [
+          "seller"
+        ],
+        "summary": "Get list of seller users",
+        "description": "",
+        "operationId": "getSellerUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sellerDocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserSellerPermissionIdxHelper"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/seller/search/{text}": {
+      "get": {
+        "tags": [
+          "seller"
+        ],
+        "summary": "Get seller by sellerDocument or f5Id",
+        "description": "",
+        "operationId": "search",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "text",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Seller"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logout user on keycloak",
+        "description": "",
+        "operationId": "logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StringOperationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/list/{cpfOrEmail}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "List users by cpf or email",
+        "description": "",
+        "operationId": "listByCpfOrEmail",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cpfOrEmail",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/complete/{email}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get user data and permissions by email",
+        "description": "",
+        "operationId": "getCompleteUserByEmail",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CompleteUser"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/me/portfolio/{onlySellersWithoutUser}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Gets the porfolio of the user logged in",
+        "description": "",
+        "operationId": "listCurrentUserPortfolio",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "onlySellersWithoutUser",
+            "in": "path",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Seller"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/portfolio/{email}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Gets the porfolio of the user",
+        "description": "",
+        "operationId": "listUserPortfolio",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Seller"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/sellerpermission/{sellerDocument}/{email}/{permission}": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Set user permission on seller",
+        "description": "",
+        "operationId": "setSellerPermission",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sellerDocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "permission",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "PAYMENT",
+              "WRITE",
+              "READ"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StringOperationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/sellerpermission/{sellerDocument}/{email}": {
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Remove user permission on seller",
+        "description": "",
+        "operationId": "removeSellerPermission",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sellerDocument",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StringOperationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/me/complete": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get logged user data and permissions",
+        "description": "",
+        "operationId": "getCompleteUserInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CompleteUser"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/me/permissions": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get user permissions",
+        "description": "",
+        "operationId": "getUserPermissions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SellerUserPermissionHelper"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/seller/{email}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get user permissions for the sellers",
+        "description": "",
+        "operationId": "getUserPermissionsForSeller",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SellerUserPermissionIdx"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/me": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get user data",
+        "description": "",
+        "operationId": "getUserInfo",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update a user",
+        "description": "",
+        "operationId": "updateUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/me/changecredentials": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Change the credentials of the logged-in user",
+        "description": "",
+        "operationId": "changeCredentials",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ChangeUserCredentialsHelper"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/device/{deviceType}/save/{userDeviceId}": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Save the user device ID",
+        "description": "",
+        "operationId": "saveDevice",
+        "parameters": [
+          {
+            "name": "deviceType",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ANDROID",
+              "IOS"
+            ]
+          },
+          {
+            "name": "userDeviceId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    },
+    "/user/resetpasswordrequest/{email}/{client}": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Requests password recovery",
+        "description": "",
+        "operationId": "passwordRecoveryRequest",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "client",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/resetpasswordconfirm": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Retrieves the user's password",
+        "description": "",
+        "operationId": "passwordRecoveryConfirm",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/RecoverUserCredentialsHelper"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/help": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Sends user help request",
+        "description": "",
+        "operationId": "help",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/HelpUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/StringOperationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "zFlowAccessCode": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "zFlowAccessCode": {
+      "description": "",
+      "type": "oauth2",
+      "authorizationUrl": "https://accounts.zflow.com.br/auth/realms/zflow/protocol/openid-connect/auth",
+      "tokenUrl": "https://accounts.zflow.com.br/auth/realms/zflow/protocol/openid-connect/token",
+      "flow": "accessCode"
+    }
+  },
+  "definitions": {
+    "LeadAttachment": {
+      "type": "object",
+      "properties": {
+        "fileName": {
+          "type": "string"
+        },
+        "fileType": {
+          "type": "string"
+        },
+        "base64": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      }
+    },
+    "LeadInfo": {
+      "type": "object",
+      "properties": {
+        "leadId": {
+          "type": "string"
+        },
+        "userOwner": {
+          "$ref": "#/definitions/UserLead"
+        },
+        "leadOrin": {
+          "type": "string",
+          "enum": [
+            "MERCADOLIVRE",
+            "WEBMOTORS",
+            "OLX",
+            "AUTOLINE",
+            "MEUCARRONOVO",
+            "SOCARRAO",
+            "SEMINOVOSBH",
+            "CARROSNASERRA",
+            "DESCONHECIDO",
+            "RESPOSTA"
+          ]
+        },
+        "leadInfoUser": {
+          "$ref": "#/definitions/LeadInfoUser"
+        },
+        "leadInfoVehicle": {
+          "$ref": "#/definitions/LeadInfoVehicle"
+        },
+        "intent": {
+          "type": "string"
+        },
+        "userMessage": {
+          "type": "string"
+        },
+        "erro": {
+          "type": "string"
+        },
+        "leadAttachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LeadAttachment"
+          }
+        }
+      }
+    },
+    "LeadInfoUser": {
+      "type": "object",
+      "properties": {
+        "clientName": {
+          "type": "string"
+        },
+        "clientEmail": {
+          "type": "string"
+        },
+        "clientPhone": {
+          "type": "string"
+        },
+        "clientDocument": {
+          "type": "string"
+        }
+      }
+    },
+    "LeadInfoVehicle": {
+      "type": "object",
+      "properties": {
+        "vehicleId": {
+          "type": "string"
+        },
+        "brandVehicle": {
+          "type": "string"
+        },
+        "modelVehicle": {
+          "type": "string"
+        },
+        "powerVehicle": {
+          "type": "string"
+        },
+        "fuelVehicle": {
+          "type": "string"
+        },
+        "yearVehicle": {
+          "type": "string"
+        },
+        "colorVehicle": {
+          "type": "string"
+        },
+        "licensePlate": {
+          "type": "string"
+        },
+        "valueVehicle": {
+          "type": "string"
+        },
+        "quilometersVehicle": {
+          "type": "string"
+        }
+      }
+    },
+    "UserLead": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "userId"
+        },
+        "ownerEmail": {
+          "type": "string",
+          "description": "ownerEmail"
+        },
+        "userEmail": {
+          "type": "string",
+          "description": "userEmail"
+        },
+        "tpEmail": {
+          "type": "string",
+          "description": "tpEmail",
+          "enum": [
+            "GMAIL",
+            "OUTLOOK",
+            "FORWARDED"
+          ]
+        },
+        "cc": {
+          "type": "string",
+          "description": "cc"
+        },
+        "sellerDocument": {
+          "type": "string",
+          "description": "sellerDocument"
+        }
+      },
+      "description": "User lead in system"
+    },
+    "FinanceOperationDetails": {
+      "type": "object",
+      "properties": {
+        "vehicleTrimId": {
+          "type": "integer",
+          "format": "int32",
+          "example": 17698,
+          "description": "Vehicle trim id"
+        },
+        "vehicleSellerDocument": {
+          "type": "integer",
+          "format": "int64",
+          "example": 9551316000146,
+          "description": "Vehicle seller cnpj (legal person) or cpf (physical person)"
+        },
+        "vehicleMake": {
+          "type": "string",
+          "example": "Ford",
+          "description": "Vehicle make description"
+        },
+        "vehicleModel": {
+          "type": "string",
+          "example": "Ka 1.0 gl",
+          "description": "Vehicle model description"
+        },
+        "vehicleModelYear": {
+          "type": "integer",
+          "format": "int32",
+          "example": 2015,
+          "description": "Vehicle model year"
+        },
+        "vehicleManufactureYear": {
+          "type": "integer",
+          "format": "int32",
+          "example": 2015,
+          "description": "Vehicle manufacture year"
+        },
+        "vehicleValue": {
+          "type": "number",
+          "format": "float",
+          "example": 25000,
+          "description": "Vehicle total price. (Seller price)"
+        },
+        "upfrontValue": {
+          "type": "number",
+          "format": "float",
+          "example": 11250,
+          "description": "Upfront value (Finance total credit = vehicleValue-upfrontValue)"
+        },
+        "installments": {
+          "type": "integer",
+          "format": "int32",
+          "example": 24,
+          "description": "Number of installments"
+        },
+        "newVehicle": {
+          "type": "boolean",
+          "example": false,
+          "description": "If the finance operation is for a brand new vehicle"
+        },
+        "clientCpf": {
+          "type": "string",
+          "description": "clientCpf"
+        },
+        "financeOperationOptions": {
+          "type": "array",
+          "description": "Finance operation options available",
+          "items": {
+            "$ref": "#/definitions/FinanceOperationOption"
+          }
+        }
+      },
+      "description": "Represents a complete finance operation"
+    },
+    "FinanceOperationOption": {
+      "type": "object",
+      "properties": {
+        "installments": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "vehicleSellerRebatePercent": {
+          "type": "number",
+          "format": "float"
+        },
+        "accessorySellerRebatePercent": {
+          "type": "number",
+          "format": "float"
+        },
+        "accessoryNominalInterest": {
+          "type": "number",
+          "format": "float"
+        },
+        "vehicleNominalInterest": {
+          "type": "number",
+          "format": "float"
+        },
+        "combinedNominalInterest": {
+          "type": "number",
+          "format": "float"
+        },
+        "accessoryInstallmentValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "vehicleInstallmentMinValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "vehicleInstallmentValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "financeInsuranceInstallmentValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "iofValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "iofValueWithInsurance": {
+          "type": "number",
+          "format": "float"
+        },
+        "insuranceValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "maxFinanciable": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "description": "Represents an available finance calculation"
+    },
+    "FinanceOperationRequest": {
+      "type": "object",
+      "properties": {
+        "vehicleTrimId": {
+          "type": "integer",
+          "format": "int32",
+          "example": 17698,
+          "description": "Vehicle trim id"
+        },
+        "vehicleSellerDocument": {
+          "type": "integer",
+          "format": "int64",
+          "example": 9551316000146,
+          "description": "Vehicle seller cnpj (legal person) or cpf (physical person)"
+        },
+        "vehicleMake": {
+          "type": "string",
+          "example": "Ford",
+          "description": "Vehicle make description"
+        },
+        "vehicleModel": {
+          "type": "string",
+          "example": "Ka 1.0 gl",
+          "description": "Vehicle model description"
+        },
+        "vehicleModelYear": {
+          "type": "integer",
+          "format": "int32",
+          "example": 2015,
+          "description": "Vehicle model year"
+        },
+        "vehicleManufactureYear": {
+          "type": "integer",
+          "format": "int32",
+          "example": 2015,
+          "description": "Vehicle manufacture year"
+        },
+        "vehicleValue": {
+          "type": "number",
+          "format": "float",
+          "example": 25000,
+          "description": "Vehicle total price. (Seller price)"
+        },
+        "upfrontValue": {
+          "type": "number",
+          "format": "float",
+          "example": 11250,
+          "description": "Upfront value (Finance total credit = vehicleValue-upfrontValue)"
+        },
+        "installments": {
+          "type": "integer",
+          "format": "int32",
+          "example": 24,
+          "description": "Number of installments"
+        },
+        "newVehicle": {
+          "type": "boolean",
+          "example": false,
+          "description": "If the finance operation is for a brand new vehicle"
+        }
+      },
+      "description": "Represents the desired vehicle credit operation"
+    },
+    "Client": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string",
+          "example": "42432j4kb32jk",
+          "description": "clientId"
+        },
+        "clientEmail": {
+          "type": "string",
+          "example": "renato@zflow.com.br",
+          "description": "clientEmail"
+        },
+        "clientName": {
+          "type": "string",
+          "example": "Renato",
+          "description": "clientName"
+        },
+        "clientPhone": {
+          "type": "string",
+          "example": "119232893298",
+          "description": "clientPhone"
+        },
+        "clientDocument": {
+          "type": "string",
+          "example": "34234324324",
+          "description": "clientDocument"
+        }
+      }
+    },
+    "ChatMessage": {
+      "type": "object",
+      "properties": {
+        "vehicleId": {
+          "type": "string"
+        },
+        "createAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "content": {
+          "type": "string"
+        },
+        "userOwnerMessage": {
+          "type": "string"
+        },
+        "intentMessage": {
+          "type": "string"
+        },
+        "visualized": {
+          "type": "boolean"
+        },
+        "eventMessageType": {
+          "type": "string",
+          "enum": [
+            "CRM",
+            "SELLER",
+            "BOOT",
+            "CLIENT"
+          ]
+        },
+        "emailAttachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EmailAttachment"
+          }
+        }
+      }
+    },
+    "EmailAttachment": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "foto1",
+          "description": "File name"
+        },
+        "content": {
+          "description": "File content",
+          "$ref": "#/definitions/InputStream"
+        },
+        "mimeType": {
+          "type": "string",
+          "example": "PDF",
+          "description": "Mime type",
+          "enum": [
+            "PDF",
+            "JPG",
+            "JPEG",
+            "PNG"
+          ]
+        }
+      },
+      "description": "Represents the attachment"
+    },
+    "InputStream": {
+      "type": "object"
+    },
+    "LeadIndex": {
+      "type": "object",
+      "properties": {
+        "leadIndexId": {
+          "type": "string",
+          "example": "1232132131231312",
+          "description": "leadIndexId"
+        },
+        "sellerDocument": {
+          "type": "string",
+          "example": "1232132131231312",
+          "description": "sellerDocument"
+        },
+        "negociationFinalStatus": {
+          "type": "string",
+          "example": "MISSING",
+          "description": "negociationFinalStatus",
+          "enum": [
+            "NEW",
+            "MISSING",
+            "SOLD",
+            "DUPLICATE"
+          ]
+        },
+        "observationList": {
+          "type": "array",
+          "description": "observationList",
+          "items": {
+            "$ref": "#/definitions/Observation"
+          }
+        },
+        "sellerPerson": {
+          "description": "sellerPerson",
+          "$ref": "#/definitions/SellerPerson"
+        },
+        "chatMessages": {
+          "type": "array",
+          "description": "chatMessages",
+          "items": {
+            "$ref": "#/definitions/ChatMessage"
+          }
+        },
+        "vehicle": {
+          "type": "array",
+          "description": "client",
+          "items": {
+            "$ref": "#/definitions/Vehicle"
+          }
+        },
+        "client": {
+          "description": "client",
+          "$ref": "#/definitions/Client"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-03-23T17:38:31.321Z",
+          "description": "createdAt",
+          "readOnly": true
+        },
+        "lastUpdateAt": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-03-23T17:38:31.321Z",
+          "description": "lastUpdateAt",
+          "readOnly": true
+        }
+      },
+      "description": "Represents a LeadIndex"
+    },
+    "Observation": {
+      "type": "object",
+      "properties": {
+        "sellerDocument": {
+          "type": "string",
+          "example": "63187123000101",
+          "description": "sellerDocument"
+        },
+        "clientId": {
+          "type": "string",
+          "example": "63187123000101",
+          "description": "clientId"
+        },
+        "content": {
+          "type": "string",
+          "example": "This guy buys",
+          "description": "content"
+        }
+      },
+      "description": "Represents a Observation"
+    },
+    "SellerPerson": {
+      "type": "object",
+      "properties": {
+        "sellerPersonId": {
+          "type": "string",
+          "example": "32h4234ghj3hjg4",
+          "description": "sellerPersonId"
+        },
+        "name": {
+          "type": "string",
+          "example": "JoÃ£o da Silva",
+          "description": "Certified agent name"
+        }
+      },
+      "description": "Represents a seller person"
+    },
+    "Vehicle": {
+      "type": "object",
+      "properties": {
+        "vehicleId": {
+          "type": "string"
+        },
+        "leadOrin": {
+          "type": "string",
+          "enum": [
+            "MERCADOLIVRE",
+            "WEBMOTORS",
+            "OLX",
+            "AUTOLINE",
+            "MEUCARRONOVO",
+            "SOCARRAO",
+            "SEMINOVOSBH",
+            "CARROSNASERRA",
+            "DESCONHECIDO",
+            "RESPOSTA"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "negotiationStatus": {
+          "type": "string",
+          "enum": [
+            "NEW",
+            "TEST_DRIVE",
+            "WAITING_DOCUMENTS"
+          ]
+        },
+        "brandVehicle": {
+          "type": "string"
+        },
+        "modelVehicle": {
+          "type": "string"
+        },
+        "powerVehicle": {
+          "type": "string"
+        },
+        "fuelVehicle": {
+          "type": "string"
+        },
+        "yearVehicle": {
+          "type": "string"
+        },
+        "colorVehicle": {
+          "type": "string"
+        },
+        "licensePlate": {
+          "type": "string"
+        },
+        "valueVehicle": {
+          "type": "string"
+        },
+        "quilometersVehicle": {
+          "type": "string"
+        }
+      }
+    },
+    "LibraryMessage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id"
+        },
+        "content": {
+          "type": "string",
+          "example": "Vai pagar a vistinha?",
+          "description": "content"
+        },
+        "messageCategory": {
+          "type": "string",
+          "example": "QUICK",
+          "description": "messageCategory",
+          "enum": [
+            "QUICK",
+            "TEST_DRIVE",
+            "FINANCING",
+            "AVALIATION",
+            "OTHERS"
+          ]
+        }
+      },
+      "description": "Represents a LibraryMessage"
+    },
+    "InviteHelper": {
+      "type": "object",
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1222121",
+          "description": "Invite id"
+        },
+        "name": {
+          "type": "string",
+          "example": "John",
+          "description": "Guest name"
+        },
+        "email": {
+          "type": "string",
+          "example": "john@gmail.com",
+          "description": "email",
+          "minLength": 10,
+          "maxLength": 2147483647,
+          "pattern": "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+        },
+        "cpf": {
+          "type": "integer",
+          "format": "int64",
+          "example": 42895664803,
+          "description": "Brazilian CPF"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "example": "999999999",
+          "description": "Phone number"
+        },
+        "sellerIds": {
+          "type": "array",
+          "description": "List of CNPJ seller",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "sellerGroupIds": {
+          "type": "array",
+          "description": "List of ID seller group",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "inviter": {
+          "type": "string",
+          "example": "1222121",
+          "description": "Invite email from who invited you"
+        },
+        "userRole": {
+          "type": "string",
+          "example": "ADMIN",
+          "description": "User roles",
+          "enum": [
+            "ADMIN",
+            "PAYMENT",
+            "WRITE",
+            "READ"
+          ]
+        },
+        "specialPermission": {
+          "type": "array",
+          "description": "List of special permission",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "userExists": {
+          "type": "boolean",
+          "example": false,
+          "description": "User existence indicator"
+        },
+        "lastPhoneDigits": {
+          "type": "string",
+          "example": "5521",
+          "description": "Last digits of the phone"
+        }
+      },
+      "description": "Represents an invite helper"
+    },
+    "ActivateInviteResponse": {
+      "type": "object",
+      "properties": {
+        "sellersToUpdate": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/SearchResult"
+          }
+        },
+        "groupsToUpdate": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/SearchResult"
+          }
+        },
+        "userNeedsUpdate": {
+          "type": "boolean"
+        },
+        "oauthToken": {
+          "$ref": "#/definitions/OAuthToken"
+        }
+      },
+      "description": "Invite activation response"
+    },
+    "OAuthToken": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "refreshToken": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "SearchResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "ActivateInviteHelper": {
+      "type": "object",
+      "properties": {
+        "mobileHash": {
+          "type": "string",
+          "example": "7952",
+          "description": "Activation code entered by the user"
+        },
+        "password": {
+          "type": "string",
+          "example": "123@qwe",
+          "description": "Password of access of the user (password of register or login if previously registered)"
+        }
+      },
+      "description": "Represents an activate invite helper"
+    },
+    "Invite": {
+      "type": "object",
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1222121",
+          "description": "Invite id"
+        },
+        "name": {
+          "type": "string",
+          "example": "John",
+          "description": "Guest name"
+        },
+        "email": {
+          "type": "string",
+          "example": "john@gmail.com",
+          "description": "email",
+          "minLength": 10,
+          "maxLength": 2147483647,
+          "pattern": "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+        },
+        "cpf": {
+          "type": "integer",
+          "format": "int64",
+          "example": 42895664803,
+          "description": "Brazilian CPF"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "example": "999999999",
+          "description": "Phone number"
+        },
+        "sellerIds": {
+          "type": "array",
+          "description": "List of CNPJ seller",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "sellerGroupIds": {
+          "type": "array",
+          "description": "List of ID seller group",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "inviter": {
+          "type": "string",
+          "example": "1222121",
+          "description": "Invite email from who invited you"
+        },
+        "userRole": {
+          "type": "string",
+          "example": "ADMIN",
+          "description": "User roles",
+          "enum": [
+            "ADMIN",
+            "PAYMENT",
+            "WRITE",
+            "READ"
+          ]
+        },
+        "specialPermission": {
+          "type": "array",
+          "description": "List of special permission",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Represents a invite"
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "zipCode": {
+          "type": "string",
+          "example": "04533000",
+          "description": "Local zip code without punctuation"
+        },
+        "address": {
+          "type": "string",
+          "example": "Rua Tutoia",
+          "description": "Main address without number"
+        },
+        "number": {
+          "type": "string",
+          "example": "1234",
+          "description": "Street number"
+        },
+        "complement": {
+          "type": "string",
+          "example": "ap 81",
+          "description": "Address complement"
+        },
+        "neighborhood": {
+          "type": "string",
+          "example": "Itaim Bibi",
+          "description": "Neighborhood Description"
+        },
+        "city": {
+          "type": "string",
+          "example": "SÃ£o Paulo",
+          "description": "City description"
+        },
+        "state": {
+          "type": "string",
+          "example": "SP",
+          "description": "State abbreviation"
+        },
+        "country": {
+          "type": "string",
+          "example": "BR",
+          "description": "Country code"
+        }
+      },
+      "description": "Complete address data structure"
+    },
+    "Library": {
+      "type": "object",
+      "properties": {
+        "photosName": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "libraryMessages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LibraryMessage"
+          }
+        },
+        "formsName": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Phone": {
+      "type": "object",
+      "required": [
+        "areaCode",
+        "countryCode",
+        "number",
+        "phoneType"
+      ],
+      "properties": {
+        "countryCode": {
+          "type": "integer",
+          "format": "int32",
+          "example": 55,
+          "description": "Country code"
+        },
+        "areaCode": {
+          "type": "integer",
+          "format": "int32",
+          "example": 11,
+          "description": "Area code"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32",
+          "example": 999999999,
+          "description": "Phone Number"
+        },
+        "extension": {
+          "type": "integer",
+          "format": "int32",
+          "example": 9999,
+          "description": "Extension Number"
+        },
+        "phoneType": {
+          "type": "string",
+          "example": "LANDLINE",
+          "description": "Phone type",
+          "enum": [
+            "LANDLINE",
+            "MOBILE"
+          ]
+        }
+      },
+      "description": "International Phone number structure"
+    },
+    "Seller": {
+      "type": "object",
+      "properties": {
+        "sellerDocument": {
+          "type": "string",
+          "example": "63187123000101",
+          "description": "Seller document (CNPJ)"
+        },
+        "f5Id": {
+          "type": "string",
+          "example": "41233",
+          "description": "External id"
+        },
+        "sellerPersonDocument": {
+          "type": "integer",
+          "format": "int64",
+          "example": 55842286726,
+          "description": "Seller person document (CPF)"
+        },
+        "operatorDocument": {
+          "type": "integer",
+          "format": "int64",
+          "example": 55842286726,
+          "description": "Operator document (CPF)"
+        },
+        "fantasyName": {
+          "type": "string",
+          "example": "Nome fantasia da loja",
+          "description": "Seller fantasy name"
+        },
+        "companyName": {
+          "type": "string",
+          "example": "Razao social da loja",
+          "description": "Seller company name"
+        },
+        "sellerChannel": {
+          "type": "string",
+          "example": "FIAT",
+          "description": "Seller channel",
+          "enum": [
+            "FIAT",
+            "CONCESSIONARIAS",
+            "LEVES",
+            "PESADOS",
+            "CONCESSIONARIAS_2",
+            "MIT_SUZ",
+            "JEEP"
+          ]
+        },
+        "usersPermission": {
+          "type": "object",
+          "description": "Seller users permission",
+          "additionalProperties": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "PAYMENT",
+              "WRITE",
+              "READ"
+            ]
+          }
+        },
+        "address": {
+          "description": "Seller address",
+          "$ref": "#/definitions/Address"
+        },
+        "phone": {
+          "description": "Seller phone",
+          "$ref": "#/definitions/Phone"
+        },
+        "socialOwners": {
+          "type": "array",
+          "example": "2728391092",
+          "description": "Seller social Owners. Can be a CNPJ or a CPF",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "testSeller": {
+          "type": "boolean",
+          "example": true,
+          "description": "Seller test"
+        },
+        "active": {
+          "type": "boolean",
+          "example": true,
+          "description": "Seller active"
+        },
+        "leadDistribution": {
+          "type": "string",
+          "example": "Um por vez",
+          "description": "Lead distribution",
+          "enum": [
+            "PERCENT",
+            "ONE_BY_TIME",
+            "PROFILE"
+          ]
+        },
+        "serviceLevelAgreement": {
+          "type": "integer",
+          "format": "int64",
+          "example": 2,
+          "description": "Service Level Agreement"
+        },
+        "library": {
+          "description": "Library",
+          "$ref": "#/definitions/Library"
+        },
+        "test": {
+          "type": "boolean"
+        }
+      },
+      "description": "Represents a sellers"
+    },
+    "UserSellerPermissionIdxHelper": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "example": "23232345315",
+          "description": "User email"
+        },
+        "userEmail": {
+          "type": "string",
+          "example": "23232345315",
+          "description": "User email"
+        },
+        "userName": {
+          "type": "string",
+          "example": "Loja 01",
+          "description": "User name"
+        },
+        "permission": {
+          "type": "string",
+          "example": "ADMIN",
+          "description": "Seller permission",
+          "enum": [
+            "ADMIN",
+            "PAYMENT",
+            "WRITE",
+            "READ"
+          ]
+        },
+        "inviteNotAccepted": {
+          "type": "boolean",
+          "description": "Invite not accepted"
+        }
+      },
+      "description": "Represents a user permission in a Seller"
+    },
+    "StringOperationResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "assD-2341-ssGf-2342-s234",
+          "description": "The data id for the object created/updated in operation"
+        },
+        "status": {
+          "type": "string",
+          "description": "Operation status",
+          "enum": [
+            "OK",
+            "ERROR"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "example": "New transaction created",
+          "description": "Message associated"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "required": [
+        "email",
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "example": "john@gmail.com",
+          "description": "Email",
+          "minLength": 10,
+          "maxLength": 2147483647,
+          "pattern": "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+        },
+        "mobileNumber": {
+          "example": "999999999",
+          "description": "Mobile number",
+          "$ref": "#/definitions/Phone"
+        },
+        "phoneNumber": {
+          "example": "999999999",
+          "description": "Phone number",
+          "$ref": "#/definitions/Phone"
+        },
+        "name": {
+          "type": "string",
+          "example": "John",
+          "description": "Guest name"
+        },
+        "cpf": {
+          "type": "integer",
+          "format": "int64",
+          "example": 42895664803,
+          "description": "Brazilian CPF"
+        },
+        "rg": {
+          "type": "string",
+          "example": "504000444",
+          "description": "Identity document number, no punctuation"
+        },
+        "birthDate": {
+          "type": "string",
+          "format": "date",
+          "example": "1985-01-21",
+          "description": "Birth date"
+        },
+        "address": {
+          "example": "Rua Tutoia",
+          "description": "Main address without number",
+          "$ref": "#/definitions/Address"
+        },
+        "devices": {
+          "type": "object",
+          "description": "User devices",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "description": "Represents a user"
+    },
+    "CompleteUser": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "description": "Complete user info",
+          "$ref": "#/definitions/User"
+        },
+        "roles": {
+          "type": "array",
+          "description": "Platform user roles",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sellerPermissions": {
+          "type": "array",
+          "description": "Seller permissions list",
+          "items": {
+            "$ref": "#/definitions/SellerUserPermissionHelper"
+          }
+        }
+      },
+      "description": "Represents a user, with roles and seller permissions populated"
+    },
+    "SellerUserPermissionHelper": {
+      "type": "object",
+      "properties": {
+        "sellerDocument": {
+          "type": "integer",
+          "format": "int64",
+          "example": 23232345315,
+          "description": "Seller document"
+        },
+        "sellerName": {
+          "type": "string",
+          "example": "Loja 01",
+          "description": "Seller name"
+        },
+        "address": {
+          "description": "Seller address",
+          "$ref": "#/definitions/Address"
+        },
+        "permission": {
+          "type": "string",
+          "example": "ADMIN",
+          "description": "Seller permission",
+          "enum": [
+            "ADMIN",
+            "PAYMENT",
+            "WRITE",
+            "READ"
+          ]
+        }
+      },
+      "description": "Represents a index of Seller and permission user."
+    },
+    "PermissionIdxItem": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "permission": {
+          "type": "string",
+          "enum": [
+            "ADMIN",
+            "PAYMENT",
+            "WRITE",
+            "READ"
+          ]
+        }
+      }
+    },
+    "SellerUserPermissionIdx": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "sellers": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/PermissionIdxItem"
+          }
+        },
+        "sellerGroups": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/PermissionIdxItem"
+          }
+        }
+      }
+    },
+    "ChangeUserCredentialsHelper": {
+      "type": "object",
+      "properties": {
+        "currentPassword": {
+          "type": "string",
+          "example": "123@qwe",
+          "description": "Current user password"
+        },
+        "newPassword": {
+          "type": "string",
+          "example": "qwe@123",
+          "description": "New user password"
+        }
+      },
+      "description": "Represents the user's password change"
+    },
+    "RecoverUserCredentialsHelper": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string",
+          "example": "73852346aef7601c4d8195b6084fd608bb6e0841",
+          "description": "Transaction hash id"
+        },
+        "newPassword": {
+          "type": "string",
+          "example": "123@qwe",
+          "description": "New user password"
+        }
+      },
+      "description": "Represents the user's password recover"
+    },
+    "HelpUser": {
+      "type": "object",
+      "properties": {
+        "emailFrom": {
+          "type": "string"
+        },
+        "emailSubject": {
+          "type": "string"
+        },
+        "emailMessage": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
