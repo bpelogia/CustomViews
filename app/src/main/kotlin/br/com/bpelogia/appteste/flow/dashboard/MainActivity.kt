@@ -54,9 +54,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        scroll_view.moveDownViewOnScrolling(navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        scroll_view.moveDownViewOnScrolling(navigation)
+
+        //Validar campos
         bt_validate.setOnClickListener { validarCampos() }
+
+        //Campo telefone/celular
+        et_phone.setIsLandLineAndMobile(true)
 
         setupCustomNumberPicker()
     }

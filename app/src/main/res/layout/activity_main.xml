@@ -194,10 +194,10 @@
                     android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="phone"
+                    android:hint="telefone"
                     android:inputType="phone"
                     android:maxLines="1"
-                    app:mask="@string/phone_mask_format"
+                    app:mask="@string/cellphone_mask_format"
                     app:required="true" />
 
             </android.support.design.widget.TextInputLayout>
