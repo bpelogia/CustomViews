@@ -197,6 +197,8 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                             } else maskSize
                         }
                     }
+                    if (selection <= 3 && PLATE_MASK == mask && maskedEditText.inputType != InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS) maskedEditText.inputType = InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS
+                    if (selection > 3 && PLATE_MASK == mask && maskedEditText.inputType != InputType.TYPE_CLASS_NUMBER) maskedEditText.inputType = InputType.TYPE_CLASS_NUMBER
                     maskedEditText.setText(if (selection == 0 && (PHONE_MASK == mask || CELLPHONE_MASK == mask)) s else mascara)
                     maskedEditText.setSelection(selection)
 
@@ -205,8 +207,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
                 override fun afterTextChanged(s: Editable) {
-                    if (maskedEditText.selectionStart <= 3 && PLATE_MASK == mask && maskedEditText.inputType != InputType.TYPE_CLASS_TEXT) maskedEditText.inputType = InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS
-                    if (maskedEditText.selectionStart >= 4 && PLATE_MASK == mask && maskedEditText.inputType != InputType.TYPE_CLASS_NUMBER) maskedEditText.inputType = InputType.TYPE_CLASS_NUMBER
+
                     isValid = maskedEditText.isValidField(isRequiredField, {
                         when {
                             CPF_MASK == mask -> isValidCpfField()
