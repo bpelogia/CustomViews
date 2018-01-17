@@ -4,7 +4,7 @@ import java.text.NumberFormat
 import java.util.*
 
 /**
- * @author Bruno Pelogia < bruno.pelogia@zflow.com.br >
+ * @author Bruno Pelogia
  * @since 10/01/2018
  */
 

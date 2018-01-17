@@ -7,7 +7,7 @@ import android.view.animation.Transformation
 import android.widget.LinearLayout
 
 /**
- * @author Bruno Pelogia < bruno.pelogia@zflow.com.br >
+ * @author Bruno Pelogia
  * @since 09/01/2018
  */
 fun View.expandMore(vararg views: View) {

@@ -14,7 +14,7 @@ import br.com.bpelogia.viewcustom.extensions.*
 
 /**
  *
- * @author Bruno Pelogia < bruno.pelogia@zflow.com.br>
+ * @author Bruno Pelogia
  * @since 10/01/2018
  */
 class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: AttributeSet? = null, mask: String? = "", placeholder: Char = ' ', required: Boolean = false) : AppCompatEditText(context, attr) {
