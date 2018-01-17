@@ -6,7 +6,7 @@ import android.view.View
 import br.com.bpelogia.viewcustom.extensions.moveViewDown
 
 /**
- * @author Bruno Pelogia < bruno.pelogia@zflow.com.br >
+ * @author Bruno Pelogia
  * @since 09/01/2018
  */
 abstract class EndlessScrollListener : RecyclerView.OnScrollListener {
@@ -26,7 +26,7 @@ abstract class EndlessScrollListener : RecyclerView.OnScrollListener {
     private var view: View? = null
 
 
-    constructor() {}
+    constructor()
 
     constructor(view: View) {
         this.view = view

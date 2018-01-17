@@ -10,7 +10,7 @@ import br.com.bpelogia.viewcustom.ui.CustomMaskEditText
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
- * Created by bruno.pelogia@zflow.com.br
+ * Created by Bruno Pelogia
  * @since 27/12/2017
  */
 class MainActivity : AppCompatActivity() {

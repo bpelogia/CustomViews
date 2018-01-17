@@ -6,7 +6,7 @@ import rx.Observable
 import rx.subjects.BehaviorSubject
 
 /**
- * @author Bruno Pelogia < bruno.pelogia@zflow.com.br >
+ * @author Bruno Pelogia
  * @since 09/01/2018
  */
 object RxView {

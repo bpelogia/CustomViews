@@ -3,7 +3,7 @@ package br.com.bpelogia.viewcustom.extensions
 import android.widget.EditText
 
 /**
- * @author Bruno Pelogia < bruno.pelogia@zflow.com.br >
+ * @author Bruno Pelogia
  * @since 10/01/2018
  */
 
