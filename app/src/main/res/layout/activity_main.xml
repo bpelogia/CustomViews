@@ -51,12 +51,12 @@
                 app:layout_goneMarginTop="@dimen/common_big_spacing"
                 app:np_dividerColor="@color/gray_border"
                 app:np_dividerDistance="@dimen/numberpicker_year_diver_distance"
-                app:np_max="2019"
-                app:np_min="2009"
+                app:np_max="5"
+                app:np_value="3"
+                app:np_min="1"
                 app:np_orientation="horizontal"
                 app:np_textColor="@color/gray_text"
                 app:np_textSize="@dimen/font_normal_size"
-                app:np_value="2018"
                 app:np_wrapSelectorWheel="false" />
 
             <android.support.design.widget.TextInputLayout
