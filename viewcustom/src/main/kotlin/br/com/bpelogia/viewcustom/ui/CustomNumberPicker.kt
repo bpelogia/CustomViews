@@ -390,7 +390,7 @@ class CustomNumberPicker
      *
      * wrapSelectorWheel Whether to wrap.
      */
-    private var wrapSelectorWheel: Boolean
+    var wrapSelectorWheel: Boolean
         get() = mWrapSelectorWheel
         set(wrapSelectorWheel) {
             val wrappingAllowed = mMaxValue - mMinValue >= mSelectorIndices.size
@@ -436,7 +436,7 @@ class CustomNumberPicker
      * @see .setMinValue
      * @see .setMaxValue
      */
-    private var value: Int
+    var value: Int
         get() = mValue
         set(value) = setValueInternal(value, false)
 
@@ -458,7 +458,7 @@ class CustomNumberPicker
     //        if (minValue < 0) {
     //            throw new IllegalArgumentException("minValue must be >= 0");
     //        }
-    private var minValue: Int
+    var minValue: Int
         get() = mMinValue
         set(minValue) {
             mMinValue = minValue
@@ -488,7 +488,7 @@ class CustomNumberPicker
      * range of selectable numbers which is equal to
      * [.getMaxValue] - [.getMinValue] + 1.
      */
-    private var maxValue: Int
+    var maxValue: Int
         get() = mMaxValue
         set(maxValue) {
             if (maxValue < 0) {
