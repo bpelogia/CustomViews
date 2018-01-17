@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CustomViews.iml" filepath="$PROJECT_DIR$/CustomViews.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LeadManager.iml" filepath="$PROJECT_DIR$/LeadManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/viewcustom/viewcustom.iml" filepath="$PROJECT_DIR$/viewcustom/viewcustom.iml" />
     </modules>
