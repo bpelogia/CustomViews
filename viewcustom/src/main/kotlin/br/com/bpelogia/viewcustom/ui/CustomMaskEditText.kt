@@ -88,12 +88,12 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
             textWatcher = object : TextWatcher {
                 internal var maskedEditText = editText
                 internal var isRequiredField = isRequired
-
+                internal val hasSymbol = true
                 internal var old = ""
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                     val qtdDigitsNow = s.toString().onlyNumbers().length
-                    val qtdDigitsPermited = mask?.filter { it == '#' }?.length ?: return
+                    val qtdDigitsPermited = mask.filter { it == '#' }.length
                     if (qtdDigitsNow > qtdDigitsPermited) {
                         maskedEditText.setText(old)
                         maskedEditText.setSelection(old.length)
@@ -106,7 +106,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                         val parsed: Double
                         try {
                             parsed = java.lang.Double.parseDouble(cleanString)
-                            textFormatted = (parsed / 100).formatMoney(true)
+                            textFormatted = (parsed / 100).formatMoney(hasSymbol)
                         } catch (e: NumberFormatException) {
                         }
 
@@ -123,7 +123,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                                 start + (textFormatted.length - old.length)
                             } else maskSize
                         }
-                        val valueDefault = 0.00.formatMoney(true)
+                        val valueDefault = 0.00.formatMoney(hasSymbol)
                         val lengthDefault = valueDefault.length
                         old = if (textFormatted == valueDefault) "" else textFormatted
 
