@@ -129,7 +129,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
 
                         selection = if ((selection <= lengthDefault && lengthDefault == maskSize) || selection > old.length) old.length else selection
                         maskedEditText.setText(old)
-                        maskedEditText.setSelection(if(selection < 0) 0 else selection )
+                        maskedEditText.setSelection(if(selection < 0) 0 else if(selection > maskedEditText.text.length) maskedEditText.text.length else selection )
 
                         maskedEditText.addTextChangedListener(this)
                     }
