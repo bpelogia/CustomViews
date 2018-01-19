@@ -151,12 +151,11 @@ Add the dependency in your `build.gradle`
 //Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.bpelogia:CustomViews:
+	        compile 'com.github.bpelogia:CustomViews:1.0.5'
+	}
 ``` 
-[![](https://jitpack.io/v/bpelogia/CustomViews.svg)](https://jitpack.io/#bpelogia/CustomViews)'
-```gradle	
-}
-```
+#### latestVersion: [![](https://jitpack.io/v/bpelogia/CustomViews.svg)](https://jitpack.io/#bpelogia/CustomViews)
+
   
   # Credits
 I used [NumberPicker](https://github.com/ShawnLin013/NumberPicker) library by ShawnLin013(Shawn Lin) as a base for development.
