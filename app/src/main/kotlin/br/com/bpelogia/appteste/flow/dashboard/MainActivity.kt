@@ -2,6 +2,7 @@ package br.com.bpelogia.appteste.flow.dashboard
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.TextInputLayout
 import android.support.v7.app.AppCompatActivity
 import android.widget.NumberPicker
 import android.widget.Toast
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun imprimir(fieldName: String, field: CustomMaskEditText) {
-        val message = if(field.isValid) "$fieldName Válido! - ${field.text}" else "$fieldName INVÁLIDO!! - ${field.text}"
+        val message = if (field.isValid) "$fieldName Válido! - ${field.text}" else "$fieldName INVÁLIDO!! - ${field.text}"
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
@@ -63,7 +64,33 @@ class MainActivity : AppCompatActivity() {
         //Campo telefone/celular
         et_phone.setIsLandLineAndMobile(true)
 
+        //Acrescentando Validacao
+        et_monetary.setOnValidationListener(object : CustomMaskEditText.OnValidationListener {
+            override fun doOnTextChange(view: CustomMaskEditText) {
+                Toast.makeText(this@MainActivity, "valor Digitado: ${view.getText(false)}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun doOnAfterTextChange(view: CustomMaskEditText): Boolean {
+                val valid = view.getText(false) == getValorFormatado(picker.value)
+                val message = "valor inválido!"
+                return validField(view,valid, message)
+            }
+
+        })
+
         setupCustomNumberPicker()
+    }
+
+    private fun validField(view: CustomMaskEditText, valid: Boolean, message: String): Boolean {
+        val ti = view.parent.parent as TextInputLayout
+        if (!valid) {
+            ti.error = message
+            view.requestFocus()
+        } else {
+            ti.error = null
+        }
+        ti.isErrorEnabled = !valid
+        return valid
     }
 
     private fun setupCustomNumberPicker() {

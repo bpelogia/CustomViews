@@ -21,8 +21,13 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
     private var mask: String? = null
     private var placeholder: String? = null
     private var isLandLineAndMobile = false
+    private var onValidationListener : OnValidationListener? = null
 
     fun setIsLandLineAndMobile(value :Boolean) { isLandLineAndMobile = value }
+
+    fun setOnValidationListener(onValidationListener: OnValidationListener) {
+        this.onValidationListener = onValidationListener
+    }
 
     var isValid = false
         private set
@@ -37,6 +42,13 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
         private val DATE_MASK = R.string.date_mask_format
         private val CEP_MASK = R.string.cep_mask_format
         private val PLATE_MASK = R.string.plate_mask_format
+    }
+
+    interface OnValidationListener {
+
+        fun doOnTextChange(view: CustomMaskEditText)
+
+        fun doOnAfterTextChange(view: CustomMaskEditText) : Boolean
     }
 
     init {
@@ -131,6 +143,8 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                         selection = if ((selection <= lengthDefault && lengthDefault == maskSize) || selection > maskedEditText.text.length) maskedEditText.text.length else selection
                         maskedEditText.setSelection(if(selection < 0) 0 else selection )
 
+                        maskedEditText.onValidationListener?.doOnTextChange(maskedEditText)
+
                         maskedEditText.addTextChangedListener(this)
                     }
                 }
@@ -138,7 +152,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
                 override fun afterTextChanged(s: Editable) {
-                    isValid = maskedEditText.isValidField(isRequiredField)
+                    isValid = maskedEditText.isValidField(isRequiredField, { maskedEditText.onValidationListener?.doOnAfterTextChange(maskedEditText) ?: true})
                 }
             }
 
@@ -210,6 +224,8 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                     maskedEditText.setText(if (selection == 0 && (PHONE_MASK.getString(context) == mask || CELLPHONE_MASK.getString(context) == mask)) s else mascara)
                     maskedEditText.setSelection(selection)
 
+                    maskedEditText.onValidationListener?.doOnTextChange(maskedEditText)
+
                 }
 
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -225,7 +241,8 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                             PHONE_MASK.getString(context), CELLPHONE_MASK.getString(context) -> isValidPhoneField()
                             else -> true
                         }
-                    })
+
+                    }) && maskedEditText.onValidationListener?.doOnAfterTextChange(maskedEditText) ?: true
                 }
             }
         }
@@ -249,8 +266,6 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
             }
             i++
         }
-
-
 
         return mascara
     }
