@@ -151,7 +151,7 @@ Add the dependency in your `build.gradle`
 //Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.bpelogia:CustomViews:1.0.4'
+	        compile 'com.github.bpelogia:CustomViews:[![](https://jitpack.io/v/bpelogia/CustomViews.svg)](https://jitpack.io/#bpelogia/CustomViews)'
 	}
 ```
   
