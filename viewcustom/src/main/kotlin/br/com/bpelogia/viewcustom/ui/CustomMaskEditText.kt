@@ -126,9 +126,9 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                         val valueDefault = 0.00.formatMoney(hasSymbol)
                         val lengthDefault = valueDefault.length
                         old = if (textFormatted == valueDefault) "" else textFormatted
-
-                        selection = if ((selection <= lengthDefault && lengthDefault == maskSize) || selection > old.length) old.length else selection
                         maskedEditText.setText(old)
+
+                        selection = if ((selection <= lengthDefault && lengthDefault == maskSize) || selection > maskedEditText.text.length) maskedEditText.text.length else selection
                         maskedEditText.setSelection(if(selection < 0) 0 else selection )
 
                         maskedEditText.addTextChangedListener(this)
