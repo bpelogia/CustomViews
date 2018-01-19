@@ -101,7 +101,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                 internal var maskedEditText = editText
                 internal var isRequiredField = isRequired
                 internal val hasSymbol = true
-                internal var old = ""
+                internal var old = 0.00.formatMoney(hasSymbol)
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                     val qtdDigitsNow = s.toString().onlyNumbers().length
@@ -137,7 +137,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                         }
                         val valueDefault = 0.00.formatMoney(hasSymbol)
                         val lengthDefault = valueDefault.length
-                        old = if (textFormatted == valueDefault) "" else textFormatted
+                        old = if (textFormatted == valueDefault) valueDefault else textFormatted
                         maskedEditText.setText(old)
 
                         selection = if ((selection <= lengthDefault && lengthDefault == maskSize) || selection > maskedEditText.text.length) maskedEditText.text.length else selection
