@@ -91,7 +91,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                 DATE_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
                 CEP_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
                 PLATE_MASK.getString(context) -> InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS
-                else -> InputType.TYPE_CLASS_TEXT
+                else -> this.inputType
             }
         }
 
@@ -164,7 +164,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                 internal var old = ""
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                    val str = if (PLATE_MASK.getString(context) == mask) s.toString().onlyAlphanumerics() else s.toString().onlyNumbers()
+                    val str = if (PLATE_MASK.getString(context) == mask) s.toString().toUpperCase().onlyAlphanumerics() else s.toString().onlyNumbers()
 
                     if (isUpdating || mask?.length ?: 0 == 0) {
                         old = str
