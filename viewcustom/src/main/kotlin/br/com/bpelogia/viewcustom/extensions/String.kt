@@ -27,10 +27,83 @@ fun String.onlyAlphanumerics(): String {
 }
 
 /**
+ * Validate CNPJ.
+ *
+ * @param 'this' String
+ * @return true case CNPJ is valid
+ */
+fun String.isCNPJValid(): Boolean {
+    if (this == "00000000000000" || this == "11111111111111" ||
+            this == "22222222222222" || this == "33333333333333" ||
+            this == "44444444444444" || this == "55555555555555" ||
+            this == "66666666666666" || this == "77777777777777" ||
+            this == "88888888888888" || this == "99999999999999" ||
+            this.length != 14)
+        return false
+
+    val dig13: Char
+    val dig14: Char
+    var sm: Int
+    var i: Int
+    var r: Int
+    var num: Int
+    var peso: Int
+
+    try {
+        // Calculo do Digito Verificador 1
+        sm = 0
+        peso = 2
+        i = 11
+        while (i >= 0) {
+            // converte o i-ésimo caractere do CNPJ em um número:
+            // por exemplo, transforma o caractere '0' no inteiro 0
+            // (48 eh a posição de '0' na tabela ASCII)
+            num = (this[i].toInt() - 48)
+            sm += num * peso
+            peso += 1
+            if (peso == 10)
+                peso = 2
+            i--
+        }
+
+        r = sm % 11
+        if (r == 0 || r == 1)
+            dig13 = '0'
+        else
+            dig13 = (11 - r + 48).toChar()
+
+        // Calculo do Digito Verificador 2
+        sm = 0
+        peso = 2
+        i = 12
+        while (i >= 0) {
+            num = (this[i].toInt() - 48)
+            sm = sm + num * peso
+            peso = peso + 1
+            if (peso == 10)
+                peso = 2
+            i--
+        }
+
+        r = sm % 11
+        if (r == 0 || r == 1)
+            dig14 = '0'
+        else
+            dig14 = (11 - r + 48).toChar()
+
+        // Verifica se os dígitos calculados conferem com os dígitos informados.
+        return dig13 == this[12] && dig14 == this[13]
+    } catch (erro: InputMismatchException) {
+        return false
+    }
+
+}
+
+/**
  * Validate CPF.
  *
- * @param cpf String
- * @return true case CPF is valid,
+ * @param 'this' String
+ * @return true case CPF is valid
  */
 fun String.isCPFValid(): Boolean {
     val cpf = this.onlyNumbers()
@@ -93,6 +166,20 @@ fun String.isDateValid(pattern: String = "dd/MM/yyyy"): Boolean {
         false
     }
 
+}
+
+fun String.formatCNPJ(isWithAsterisk: Boolean): String {
+    var cnpj = this
+    var mask = "$1.$2.$3/$4-$5"
+    cnpj = cnpj.replace("(\\D)".toRegex(), "")
+    if (isWithAsterisk) {
+        mask = "$1.***.***/****-$5"
+    }
+    val pattern = Pattern.compile("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})")
+    val matcher = pattern.matcher(cnpj)
+    if (matcher.matches())
+        cnpj = matcher.replaceAll(mask)
+    return cnpj
 }
 
 fun String.formatCPF(isWithAsterisk: Boolean): String {

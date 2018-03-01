@@ -37,6 +37,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
     companion object {
         private val MONETARY_MASK = R.string.monetary_mask_format
         private val CPF_MASK = R.string.cpf_mask_format
+        private val CNPJ_MASK = R.string.cnpj_mask_format
         private val PHONE_MASK = R.string.phone_mask_format
         private val CELLPHONE_MASK = R.string.cellphone_mask_format
         private val DATE_MASK = R.string.date_mask_format
@@ -86,6 +87,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
             this.inputType = when (mask) {
                 MONETARY_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
                 CPF_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
+                CNPJ_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
                 CELLPHONE_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
                 PHONE_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
                 DATE_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
@@ -235,6 +237,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                     isValid = maskedEditText.isValidField(isRequiredField, {
                         when (mask) {
                             CPF_MASK.getString(context) -> isValidCpfField()
+                            CNPJ_MASK.getString(context) -> isValidCnpjField()
                             CEP_MASK.getString(context) -> isValidCepField()
                             DATE_MASK.getString(context) -> isValidDateField()
                             PLATE_MASK.getString(context) -> isValidPlateField()
@@ -296,6 +299,12 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
         return setupValidation(
                 R.string.cpf_invalid_field.getString(context),
                 this.getText(true).isCPFValid())
+    }
+
+    private fun isValidCnpjField(): Boolean {
+        return setupValidation(
+                R.string.cnpj_invalid_field.getString(context),
+                this.getText(true).isCNPJValid())
     }
 
     private fun isValidCepField(): Boolean {

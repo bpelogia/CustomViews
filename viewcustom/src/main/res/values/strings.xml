@@ -5,6 +5,7 @@
     <string name="date_mask_format">##/##/####</string>
     <string name="monetary_mask_format">#.###.###.###,##</string>
     <string name="cpf_mask_format">###.###.###-##</string>
+    <string name="cnpj_mask_format">##.###.###/####-##</string>
     <string name="cellphone_mask_format">(##) #####-####</string>
     <string name="phone_mask_format">(##) ####-####</string>
     <string name="cep_mask_format">#####-###</string>
@@ -13,6 +14,7 @@
     <!-- Validações -->
     <string name="email_invalid_field">e-mail inválido</string>
     <string name="cpf_invalid_field">CPF inválido</string>
+    <string name="cnpj_invalid_field">CNPJ inválido</string>
     <string name="cellphone_invalid_field">celular inválido</string>
     <string name="phone_invalid_field">telefone inválido</string>
     <string name="plate_invalid_field">placa inválida</string>

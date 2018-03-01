@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.NumberPicker
 import android.widget.Toast
 import br.com.bpelogia.appteste.R
+import br.com.bpelogia.viewcustom.extensions.formatCNPJ
 import br.com.bpelogia.viewcustom.extensions.formatMoney
 import br.com.bpelogia.viewcustom.extensions.moveDownViewOnScrolling
 import br.com.bpelogia.viewcustom.ui.CustomMaskEditText
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     fun validarCampos() {
         imprimir("CPF", et_cpf)
+        imprimir("CNPJ", et_cnpj)
         imprimir("Placa", et_plate)
         imprimir("Valor", et_monetary)
         imprimir("Cep", et_cep)
@@ -76,6 +78,17 @@ class MainActivity : AppCompatActivity() {
                 return validField(view,valid, message)
             }
 
+        })
+
+        et_cnpj.setOnValidationListener(object : CustomMaskEditText.OnValidationListener {
+
+            override fun doOnAfterTextChange(view: CustomMaskEditText): Boolean {
+                Toast.makeText(this@MainActivity, "CNPJ: ${view.getText(true).formatCNPJ(false)}", Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            override fun doOnTextChange(view: CustomMaskEditText) {
+            }
         })
 
         setupCustomNumberPicker()
