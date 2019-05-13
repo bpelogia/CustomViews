@@ -155,6 +155,29 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/ti_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/common_big_spacing"
+                android:layout_marginStart="@dimen/common_big_spacing"
+                android:layout_weight="@integer/common_text_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ti_monetary">
+
+                <br.com.bpelogia.viewcustom.ui.CustomMaskEditText
+                    android:id="@+id/et_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="number"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    app:mask="@string/number_mask_format"
+                    app:required="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
                 android:id="@+id/ti_cep"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -164,7 +187,7 @@
                 android:layout_weight="@integer/common_text_weight"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ti_monetary">
+                app:layout_constraintTop_toBottomOf="@+id/ti_number">
 
                 <br.com.bpelogia.viewcustom.ui.CustomMaskEditText
                     android:id="@+id/et_cep"

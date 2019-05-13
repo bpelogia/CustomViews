@@ -21,9 +21,11 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
     private var mask: String? = null
     private var placeholder: String? = null
     private var isLandLineAndMobile = false
-    private var onValidationListener : OnValidationListener? = null
+    private var onValidationListener: OnValidationListener? = null
 
-    fun setIsLandLineAndMobile(value :Boolean) { isLandLineAndMobile = value }
+    fun setIsLandLineAndMobile(value: Boolean) {
+        isLandLineAndMobile = value
+    }
 
     fun setOnValidationListener(onValidationListener: OnValidationListener) {
         this.onValidationListener = onValidationListener
@@ -33,8 +35,8 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
         private set
 
 
-
     companion object {
+        private val NUMBER_MASK = R.string.number_mask_format
         private val MONETARY_MASK = R.string.monetary_mask_format
         private val CPF_MASK = R.string.cpf_mask_format
         private val CNPJ_MASK = R.string.cnpj_mask_format
@@ -49,7 +51,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
 
         fun doOnTextChange(view: CustomMaskEditText)
 
-        fun doOnAfterTextChange(view: CustomMaskEditText) : Boolean
+        fun doOnAfterTextChange(view: CustomMaskEditText): Boolean
     }
 
     init {
@@ -85,6 +87,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
 
         if (mask != null) {
             this.inputType = when (mask) {
+                NUMBER_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
                 MONETARY_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
                 CPF_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
                 CNPJ_MASK.getString(context) -> InputType.TYPE_CLASS_NUMBER
@@ -98,12 +101,13 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
         }
 
         val textWatcher: TextWatcher
-        if (MONETARY_MASK.getString(context) == mask) {
+
+        if (MONETARY_MASK.getString(context) == mask || NUMBER_MASK.getString(context) == mask) {
             textWatcher = object : TextWatcher {
-                internal var maskedEditText = editText
-                internal var isRequiredField = isRequired
-                internal val hasSymbol = true
-                internal var old = 0.00.formatMoney(hasSymbol)
+                var maskedEditText = editText
+                var isRequiredField = isRequired
+                val hasSymbol = true
+                var old = if (NUMBER_MASK.getString(context) == mask) 0.00.formatThousand() else 0.00.formatMoney(hasSymbol)
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                     val qtdDigitsNow = s.toString().onlyNumbers().length
@@ -120,7 +124,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                         val parsed: Double
                         try {
                             parsed = java.lang.Double.parseDouble(cleanString)
-                            textFormatted = (parsed / 100).formatMoney(hasSymbol)
+                            textFormatted = if (NUMBER_MASK.getString(context) == mask) (parsed).formatThousand() else (parsed / 100).formatMoney(hasSymbol)
                         } catch (e: NumberFormatException) {
                         }
 
@@ -137,13 +141,13 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                                 start + (textFormatted.length - old.length)
                             } else maskSize
                         }
-                        val valueDefault = 0.00.formatMoney(hasSymbol)
+                        val valueDefault = if (NUMBER_MASK.getString(context) == mask) 0.00.formatThousand() else 0.00.formatMoney(hasSymbol)
                         val lengthDefault = valueDefault.length
                         old = if (textFormatted == valueDefault) valueDefault else textFormatted
                         maskedEditText.setText(old)
 
                         selection = if ((selection <= lengthDefault && lengthDefault == maskSize) || selection > maskedEditText.text.length) maskedEditText.text.length else selection
-                        maskedEditText.setSelection(if(selection < 0) 0 else selection )
+                        maskedEditText.setSelection(if (selection < 0) 0 else selection)
 
                         maskedEditText.onValidationListener?.doOnTextChange(maskedEditText)
 
@@ -154,16 +158,19 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
                 override fun afterTextChanged(s: Editable) {
-                    isValid = maskedEditText.isValidField(isRequiredField, { maskedEditText.onValidationListener?.doOnAfterTextChange(maskedEditText) ?: true})
+                    isValid = maskedEditText.isValidField(isRequiredField) {
+                        maskedEditText.onValidationListener?.doOnAfterTextChange(maskedEditText)
+                                ?: true
+                    }
                 }
             }
 
         } else {
             textWatcher = object : TextWatcher {
-                internal var maskedEditText = editText
-                internal var isRequiredField = isRequired
-                internal var isUpdating: Boolean = false
-                internal var old = ""
+                var maskedEditText = editText
+                var isRequiredField = isRequired
+                var isUpdating: Boolean = false
+                var old = ""
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                     val str = if (PLATE_MASK.getString(context) == mask) s.toString().toUpperCase().onlyAlphanumerics() else s.toString().onlyNumbers()
@@ -234,7 +241,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
 
                 override fun afterTextChanged(s: Editable) {
 
-                    isValid = maskedEditText.isValidField(isRequiredField, {
+                    isValid = maskedEditText.isValidField(isRequiredField) {
                         when (mask) {
                             CPF_MASK.getString(context) -> isValidCpfField()
                             CNPJ_MASK.getString(context) -> isValidCnpjField()
@@ -245,7 +252,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                             else -> true
                         }
 
-                    }) && maskedEditText.onValidationListener?.doOnAfterTextChange(maskedEditText) ?: true
+                    } && maskedEditText.onValidationListener?.doOnAfterTextChange(maskedEditText) ?: true
                 }
             }
         }
@@ -326,9 +333,9 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
     }
 
     private fun isValidPhoneField(): Boolean {
-        val messageValidation = if(mask == PHONE_MASK.getString(context))
-                                    R.string.phone_invalid_field.getString(context)
-                                else R.string.cellphone_invalid_field.getString(context)
+        val messageValidation = if (mask == PHONE_MASK.getString(context))
+            R.string.phone_invalid_field.getString(context)
+        else R.string.cellphone_invalid_field.getString(context)
 
         val validDigit = if (this.getText(true).length >= 3) {
             when (this.getText(true)[2]) {
@@ -337,9 +344,9 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
             }
         } else true
 
-        val validation = if(mask == PHONE_MASK.getString(context))
-                            this.getText(true).length == 10
-                        else this.getText(true).length == 11
+        val validation = if (mask == PHONE_MASK.getString(context))
+            this.getText(true).length == 10
+        else this.getText(true).length == 11
 
         return setupValidation(messageValidation, validation && validDigit)
 
