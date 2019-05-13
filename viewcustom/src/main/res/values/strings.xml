@@ -3,6 +3,7 @@
 
     <!-- Mask -->
     <string name="date_mask_format">##/##/####</string>
+    <string name="number_mask_format">#.###.###.###</string>
     <string name="monetary_mask_format">#.###.###.###,##</string>
     <string name="cpf_mask_format">###.###.###-##</string>
     <string name="cnpj_mask_format">##.###.###/####-##</string>

@@ -1,5 +1,7 @@
 package br.com.bpelogia.viewcustom.extensions
 
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
 import java.util.*
 
@@ -20,4 +22,9 @@ fun Double.formatMoney(withSymbol: Boolean): String {
     val nf = NumberFormat.getCurrencyInstance(ptBr)
     val doubleFormatted = nf.format(this)
     return if(withSymbol) doubleFormatted else doubleFormatted.replace("R$", "").trim { it <= ' ' }
+}
+
+fun Double.formatThousand(label: String?=""): String {
+    val df = DecimalFormat("#,###,###,###", DecimalFormatSymbols(Locale("pt", "BR")))
+    return df.format(this).plus(label)
 }

@@ -590,7 +590,7 @@ class CustomNumberPicker
         }
 
     @Retention(AnnotationRetention.SOURCE)
-    @IntDef(VERTICAL.toLong(), HORIZONTAL.toLong())
+    @IntDef(VERTICAL, HORIZONTAL)
     annotation class Orientation
 
     /**
@@ -712,7 +712,7 @@ class CustomNumberPicker
 
         if(background == null) {
             val backgroundRetangle = ContextCompat.getDrawable(mContext, R.drawable.retangle_layout_picker)
-            backgroundRetangle.colorFilter = PorterDuffColorFilter(mSelectionDividerColor, PorterDuff.Mode.SRC_IN)
+            backgroundRetangle?.colorFilter = PorterDuffColorFilter(mSelectionDividerColor, PorterDuff.Mode.SRC_IN)
             background = backgroundRetangle
         }
 
