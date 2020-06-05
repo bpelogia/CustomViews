@@ -120,6 +120,7 @@ add `xmlns:app="http://schemas.android.com/apk/res-auto"`
         android:hint="monetary"
         android:maxLines="1"
         app:mask="@string/monetary_mask_format"
+        app:validateAfterLastDigit="true"
         app:required="true" />
 
 </android.support.design.widget.TextInputLayout>

@@ -1,14 +1,14 @@
 package br.com.bpelogia.viewcustom.ui
 
 import android.content.Context
-import android.support.design.widget.TextInputLayout
-import android.support.v7.widget.AppCompatEditText
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatEditText
 import br.com.bpelogia.viewcustom.R
 import br.com.bpelogia.viewcustom.extensions.*
+import com.google.android.material.textfield.TextInputLayout
 
 
 /**
@@ -16,7 +16,7 @@ import br.com.bpelogia.viewcustom.extensions.*
  * @author Bruno Pelogia
  * @since 10/01/2018
  */
-class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: AttributeSet? = null, mask: String? = "", placeholder: Char = ' ', required: Boolean = false) : AppCompatEditText(context, attr) {
+class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: AttributeSet? = null, mask: String? = "", placeholder: Char = ' ', required: Boolean = false, validateAfterLastDigit: Boolean = false) : AppCompatEditText(context, attr) {
 
     private var mask: String? = null
     private var placeholder: String? = null
@@ -59,6 +59,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
             var maskReceived = mask
             var placeholderReceived = placeholder
             var requiredReceived = required
+            var validateAfterLastDigitReceived = validateAfterLastDigit
             val a = context.obtainStyledAttributes(attr, R.styleable.CustomMaskEditText)
             val count = a.indexCount
 
@@ -67,9 +68,10 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                     .map { a.getIndex(it) }
                     .forEach {
                         when (it) {
+                            R.styleable.CustomMaskEditText_validateAfterLastDigit -> validateAfterLastDigitReceived = a.getBoolean(it, false)
                             R.styleable.CustomMaskEditText_required -> requiredReceived = a.getBoolean(it, false)
                             R.styleable.CustomMaskEditText_mask -> maskReceived = (if (mask?.length ?: 0 > 0) mask else a.getString(it))
-                            R.styleable.CustomMaskEditText_placeholder -> placeholderReceived = (if (a.getString(it).isNotEmpty() && placeholder == ' ') a.getString(it)[0] else placeholder)
+                            R.styleable.CustomMaskEditText_placeholder -> placeholderReceived = (if ((!a.getString(it).isNullOrEmpty()) && placeholder == ' ') a.getString(it)!![0] else placeholder)
                         }
                     }
 
@@ -78,11 +80,34 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
             this.mask = maskReceived
             this.placeholder = placeholderReceived.toString()
 
-            addTextChangedListener(mask(this, requiredReceived))
+            addTextChangedListener(mask(this, requiredReceived, validateAfterLastDigitReceived))
+
+            this.setOnFocusChangeListener { view, hasFocus ->
+                if(!hasFocus && validateAfterLastDigitReceived) {
+                    if (MONETARY_MASK.getString(context) == mask || NUMBER_MASK.getString(context) == this.mask) {
+                        isValid = this.isValidField(requiredReceived, false) {
+                            this.onValidationListener?.doOnAfterTextChange(this) ?: true
+                        }
+                    } else {
+                        isValid = this.isValidField(requiredReceived, false) {
+                            when (this.mask) {
+                                CPF_MASK.getString(context) -> isValidCpfField()
+                                CNPJ_MASK.getString(context) -> isValidCnpjField()
+                                CEP_MASK.getString(context) -> isValidCepField()
+                                DATE_MASK.getString(context) -> isValidDateField()
+                                PLATE_MASK.getString(context) -> isValidPlateField()
+                                PHONE_MASK.getString(context), CELLPHONE_MASK.getString(context) -> isValidPhoneField()
+                                else -> true
+                            }
+
+                        } && this.onValidationListener?.doOnAfterTextChange(this) ?: true
+                    }
+                }
+            }
         }
     }
 
-    private fun mask(editText: CustomMaskEditText, isRequired: Boolean): TextWatcher {
+    private fun mask(editText: CustomMaskEditText, isRequired: Boolean, validateAfterLastDigit: Boolean): TextWatcher {
         val mask = editText.getMask()
 
         if (mask != null) {
@@ -106,6 +131,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
             textWatcher = object : TextWatcher {
                 var maskedEditText = editText
                 var isRequiredField = isRequired
+                var validateAfterLastDigitField = validateAfterLastDigit
                 val hasSymbol = true
                 var old = if (NUMBER_MASK.getString(context) == mask) 0.00.formatThousand() else 0.00.formatMoney(hasSymbol)
 
@@ -146,7 +172,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                         old = if (textFormatted == valueDefault) valueDefault else textFormatted
                         maskedEditText.setText(old)
 
-                        selection = if ((selection <= lengthDefault && lengthDefault == maskSize) || selection > maskedEditText.text.length) maskedEditText.text.length else selection
+                        selection = if ((selection <= lengthDefault && lengthDefault == maskSize) || selection > maskedEditText.text?.length?:0) maskedEditText.text?.length ?:0 else selection
                         maskedEditText.setSelection(if (selection < 0) 0 else selection)
 
                         maskedEditText.onValidationListener?.doOnTextChange(maskedEditText)
@@ -158,7 +184,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
                 override fun afterTextChanged(s: Editable) {
-                    isValid = maskedEditText.isValidField(isRequiredField) {
+                    isValid = maskedEditText.isValidField(isRequiredField, validateAfterLastDigitField) {
                         maskedEditText.onValidationListener?.doOnAfterTextChange(maskedEditText)
                                 ?: true
                     }
@@ -169,6 +195,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
             textWatcher = object : TextWatcher {
                 var maskedEditText = editText
                 var isRequiredField = isRequired
+                var validateAfterLastDigitField = validateAfterLastDigit
                 var isUpdating: Boolean = false
                 var old = ""
 
@@ -241,7 +268,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
 
                 override fun afterTextChanged(s: Editable) {
 
-                    isValid = maskedEditText.isValidField(isRequiredField) {
+                    isValid = maskedEditText.isValidField(isRequiredField, validateAfterLastDigitField) {
                         when (mask) {
                             CPF_MASK.getString(context) -> isValidCpfField()
                             CNPJ_MASK.getString(context) -> isValidCnpjField()
@@ -285,7 +312,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
      *
      * @return true se campo nao for vazio ou zero, false se conter zero ou for vazio.
      */
-    fun isValidField(isRequiredField: Boolean, block: (() -> Boolean)? = null): Boolean {
+    fun isValidField(isRequiredField: Boolean, validateAfterLastDigit: Boolean, block: (() -> Boolean)? = null): Boolean {
         val textInputLayout = this.parent.parent as TextInputLayout
 
         if (this.isEmptyFieldOrZero()) {
@@ -299,7 +326,18 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
         }
         textInputLayout.isErrorEnabled = false
         textInputLayout.error = null
-        return block?.invoke() ?: true
+
+        var isValid = true
+        val sizeMask = this.mask?.length ?:0
+        val sizeTyping = this.getText(false).length
+        if(validateAfterLastDigit) {
+            if(sizeTyping == sizeMask) {
+                isValid = block?.invoke() ?: true
+            }
+        } else {
+            isValid = block?.invoke() ?: true
+        }
+        return isValid
     }
 
     private fun isValidCpfField(): Boolean {
@@ -356,7 +394,7 @@ class CustomMaskEditText @JvmOverloads constructor(context: Context, attr: Attri
         val ti = this.parent.parent as TextInputLayout
         if (!validation && this.isEmptyFieldOrZero().not()) {
             ti.error = message
-            this.requestFocus()
+            //this.requestFocus()
         } else {
             ti.error = null
         }

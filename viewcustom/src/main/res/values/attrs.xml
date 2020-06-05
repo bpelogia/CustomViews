@@ -4,6 +4,7 @@
     <declare-styleable name="CustomMaskEditText">
         <attr name="mask" format="string" />
         <attr name="required" format="boolean"/>
+        <attr name="validateAfterLastDigit" format="boolean"/>
         <attr name="placeholder" format="string" />
     </declare-styleable>
 

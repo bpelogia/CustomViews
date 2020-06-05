@@ -2,25 +2,25 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-def versionMajor = 0
+def versionMajor = 1
 def versionMinor = 0
 def versionPatch = 1
-def versionBuild = 1
+def versionBuild = 0
 
 def finalVersionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
 def finalVersionName = "${versionMajor}.${versionMinor}.${versionPatch}"
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         applicationId "br.com.zflow.bpelogia"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode finalVersionCode
         versionName finalVersionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -68,7 +68,6 @@ buildscript {
     dependencies {
         // The Fabric Gradle plugin uses an open ended version to react
         // quickly to Android tooling updates
-        classpath 'io.fabric.tools:gradle:1.25.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     }
@@ -78,21 +77,16 @@ buildscript {
 dependencies {
     implementation project(':viewcustom')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$support_version"
-    implementation "com.android.support:design:$support_version"
-    implementation "com.android.support:support-vector-drawable:$support_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
-    //Retrofit / Rest
     implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-moshi:2.4.0'
 
     //Material Components
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     //Material SearchView
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
@@ -101,20 +95,5 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.2.0'
     implementation 'io.reactivex:rxkotlin:0.55.0'
 
-    //Swagger
-    implementation("io.swagger:swagger-annotations:1.5.0")
-
-    //Gson
-    implementation("com.google.code.gson:gson:2.8.0")
-
-    //Joda Time
-    implementation 'joda-time:joda-time:2.10'
-
-    //Test
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 
 }

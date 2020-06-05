@@ -1,17 +1,17 @@
 package br.com.bpelogia.appteste.flow.dashboard
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.TextInputLayout
-import android.support.v7.app.AppCompatActivity
 import android.widget.NumberPicker
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import br.com.bpelogia.appteste.R
 import br.com.bpelogia.viewcustom.extensions.formatCNPJ
 import br.com.bpelogia.viewcustom.extensions.formatMoney
 import br.com.bpelogia.viewcustom.extensions.moveDownViewOnScrolling
 import br.com.bpelogia.viewcustom.ui.CustomMaskEditText
 import br.com.bpelogia.viewcustom.ui.CustomNumberPicker
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**

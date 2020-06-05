@@ -6,8 +6,6 @@ import android.graphics.*
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.support.annotation.*
-import android.support.v4.content.ContextCompat
 import android.text.InputType
 import android.text.Spanned
 import android.text.TextUtils
@@ -22,6 +20,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Scroller
+import androidx.annotation.*
+import androidx.core.content.ContextCompat
 import br.com.bpelogia.viewcustom.R
 import java.text.DecimalFormatSymbols
 import java.util.*

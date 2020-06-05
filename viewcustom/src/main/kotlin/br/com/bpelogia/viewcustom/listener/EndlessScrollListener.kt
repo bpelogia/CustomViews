@@ -1,8 +1,8 @@
 package br.com.bpelogia.viewcustom.listener
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.bpelogia.viewcustom.extensions.moveViewDown
 
 /**
@@ -50,9 +50,9 @@ abstract class EndlessScrollListener : RecyclerView.OnScrollListener {
         this.view = view
     }
 
-    override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
-        val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
+        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
         val visibleItemCount = layoutManager.childCount
         val totalItemCount = layoutManager.itemCount
         val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
@@ -97,7 +97,7 @@ abstract class EndlessScrollListener : RecyclerView.OnScrollListener {
     // Defines the process for actually loading more data based on page
     abstract fun onLoadMore(page: Int, totalItemsCount: Int)
 
-    override fun onScrollStateChanged(view: RecyclerView?, scrollState: Int) {
+    override fun onScrollStateChanged(recyclerView: RecyclerView, scrollState: Int) {
         // Don't take any action on changed
     }
 }
